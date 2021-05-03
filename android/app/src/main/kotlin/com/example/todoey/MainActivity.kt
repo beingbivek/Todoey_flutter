@@ -1,0 +1,6 @@
+package com.bivek.todoey
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
