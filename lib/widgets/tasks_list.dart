@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoey/models/task_data.dart';
 import 'package:todoey/widgets/task_tile.dart';
+import 'package:toast/toast.dart';
 
 class TasksList extends StatelessWidget {
   @override
@@ -17,13 +18,16 @@ class TasksList extends StatelessWidget {
               taskTitle: task.name,
               isChecked: task.isDone,
               checkboxCallback: (checkboxState) {
-                // setState(() {
                 taskData.updateTask(task);
-                // });
               },
               longPressCallback: () {
                 if (task.isDone) {
                   taskData.deleteTask(task);
+                  Toast.show("${task.name} Deleted", context,
+                      duration: Toast.LENGTH_SHORT,
+                      gravity: Toast.BOTTOM,
+                      textColor: Colors.white,
+                      backgroundColor: Colors.redAccent);
                 }
               },
             );
