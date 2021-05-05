@@ -1,10 +1,9 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/models/task_data.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  final Function addTaskCallback;
-  AddTaskScreen(this.addTaskCallback);
   @override
   Widget build(BuildContext context) {
     String newTask;
@@ -39,8 +38,10 @@ class AddTaskScreen extends StatelessWidget {
               ),
               MaterialButton(
                 onPressed: () {
-                  addTaskCallback(newTask);
-                  // Navigator.pop(context, newTask);
+                  //to call a function in a changenotifier class the new update needs to add listen to false
+                  Provider.of<TaskData>(context, listen: false)
+                      .addTask(newTask);
+                  Navigator.pop(context);
                 },
                 child: Hero(
                   tag: 'bubble',
